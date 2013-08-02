@@ -81,7 +81,7 @@ def prepareArgs(argv):
       type='string', dest='smtp_pass')
   parser.add_option('--filters', action='store',
       type='string', dest='filters')
-  (options, args) = parser.parse_args(argv)  
+  (options, args) = parser.parse_args(argv)
   return options
 
 def main(argv):
@@ -102,7 +102,7 @@ def main(argv):
   while True:
     # Notifications to send in this run.
     new_posts = []
-    
+
     # Check each feed.
     for feed in feed_urls:
       feed_data = fetchFeed(feed)
@@ -115,7 +115,6 @@ def main(argv):
           if firstScan:
             posts_seen.append(post['link'])
             continue
-          
           # Check if we've already seen this post.
           if post['link'] not in posts_seen:
             # Check if the post is filtered.
@@ -125,12 +124,9 @@ def main(argv):
                     (post['link'], filter_str))
               else:
                 new_posts.append(post)
-
             posts_seen.append(post['link'])
-
           else:
             print 'Already sent notification for %s' % post['link']
-
     firstScan = False
 
     # Send the notification.
